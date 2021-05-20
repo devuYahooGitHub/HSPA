@@ -1,0 +1,28 @@
+<!-- <p>user-login works!</p> -->
+<div class="row">
+  <div class="col-6- m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Login
+      </div>
+      <div class="card-body">
+        <form #loginForm='ngForm' (ngSubmit)='onLogin(loginForm)'>
+          <div class="form-group col-12">
+            <label for="userName" class="form-label">Name</label>
+            <input class="form-control" required ngModel name='userName'/>
+          </div>
+          <div class="form-group col-12">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" required ngModel name='password'/>
+          </div>
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary mr-2">Save</button>
+            <button type="reset" class="btn btn-secondary">Cancel</button>
+          </div>
+          Form value:{{loginForm.value | json}}<br>
+          Form status:{{loginForm.valid}}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
