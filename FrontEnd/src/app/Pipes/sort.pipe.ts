@@ -13,7 +13,7 @@ export class SortPipe implements PipeTransform {
     if (sortDirection === 'desc') {
       multiplier = -1;
     }
-
+if(value){
     value.sort((a: any, b: any) => {
       if (a[sortField] < b[sortField]) {
         return -1 * multiplier;
@@ -22,9 +22,8 @@ export class SortPipe implements PipeTransform {
       } else {
         return 0;
       }
+     });
     }
-    );
-
     return value;
   }
 
