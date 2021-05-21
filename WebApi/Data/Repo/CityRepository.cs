@@ -28,6 +28,12 @@ namespace WebApi.Data.Repo
                 dc.Cities.Remove(city);
         }
 
+        public async Task<City> FindCity(int Id)
+        {
+            // throw new System.NotImplementedException();
+             return await dc.Cities.FindAsync(Id);
+        }
+
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
            // throw new System.NotImplementedException();
@@ -39,5 +45,7 @@ namespace WebApi.Data.Repo
         //     //throw new System.NotImplementedException();
         //     return await dc.SaveChangesAsync() > 0;
         // }
+
+        
     }
 }
