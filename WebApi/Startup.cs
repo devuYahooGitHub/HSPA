@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
 using WebApi.Data.Repo;
+using WebApi.Helpers;
 using WebApi.Interfaces;
 
 namespace WebApi
@@ -34,6 +35,7 @@ namespace WebApi
                 );
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             //services.AddScoped<ICityRepository,CityRepository>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddSwaggerGen(c =>

@@ -9,6 +9,7 @@ using WebApi.Interfaces;
 using WebApi.Data.Repo;
 using WebApi.Models;
 using WebApi.Dtos;
+using AutoMapper;
 
 namespace WebApi.Controllers
 {
@@ -19,13 +20,19 @@ namespace WebApi.Controllers
         //private readonly DataContext dc;
         //private readonly ICityRepository CityRepository;
         private readonly IUnitOfWork uow;
+        private readonly IMapper mapper;
 
         //public CityController(DataContext dc, ICityRepository CityRepository)
         // public CityController(ICityRepository CityRepository)
-        public CityController(IUnitOfWork uow)
+        //public CityController(IUnitOfWork uow)
+        public CityController(IUnitOfWork uow,IMapper mapper)
         {
             //this.CityRepository = CityRepository;
+            
+            //this.uow = uow;
+            
             this.uow = uow;
+            this.mapper = mapper;
 
             // this.dc = dc;
         }
@@ -49,11 +56,13 @@ namespace WebApi.Controllers
 
             var cities = await uow.CityRepository.GetCitiesAsync();
 
-            var cityDto = from c in cities
-            select new CityDto{
-                Id=c.Id,
-                Name=c.Name
-            };
+            // var cityDto = from c in cities
+            // select new CityDto{
+            //     Id=c.Id,
+            //     Name=c.Name
+            // };
+
+            var cityDto = mapper.Map<IEnumerable<CityDto>>(cities);
             return Ok(cityDto);
         }
 
@@ -90,11 +99,13 @@ namespace WebApi.Controllers
             // await uow.SaveAsync();
             // return StatusCode(201);
 
-            var city = new City{
-                Name = cityDto.Name,
-                LastUpdatedBy =1,
-                LastUpdatedOn= DateTime.Now
-            };
+            // var city = new City{
+            //     Name = cityDto.Name,
+            //     LastUpdatedBy =1,
+            //     LastUpdatedOn= DateTime.Now
+            // };
+
+            var city=mapper.Map<City>(cityDto);
              uow.CityRepository.AddCity(city);
             await uow.SaveAsync();
             return StatusCode(201);
