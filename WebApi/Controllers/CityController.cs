@@ -50,6 +50,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCities()
         {
+            throw new UnauthorizedAccessException();
             //var cities = await dc.Cities.ToListAsync();
             
             // var cities = await uow.CityRepository.GetCitiesAsync();
@@ -92,6 +93,7 @@ namespace WebApi.Controllers
         //public async Task<IActionResult> AddCities(City city)
         public async Task<IActionResult> AddCities(CityDto cityDto)
         {
+            
             // await dc.Cities.AddAsync(city);
             // await dc.SaveChangesAsync();
             //return Ok(city);
@@ -131,11 +133,12 @@ namespace WebApi.Controllers
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCity(int id,CityDto cityDto){
             
+            throw new Exception("Some unknown error occured in code");
             if (id !=cityDto.Id) 
                 return BadRequest("Update not allowed");
 
             var cityFromDb = await uow.CityRepository.FindCity(id);
-            
+
             if(cityFromDb==null)
                 return BadRequest("Update not allowed");
             
