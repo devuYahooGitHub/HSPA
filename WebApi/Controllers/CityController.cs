@@ -11,12 +11,14 @@ using WebApi.Models;
 using WebApi.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CityController : ControllerBase
+    // [Route("api/[controller]")]
+    // [ApiController]
+    [Authorize]
+    public class CityController : BaseController //ControllerBase
     {
         //private readonly DataContext dc;
         //private readonly ICityRepository CityRepository;
@@ -48,9 +50,10 @@ namespace WebApi.Controllers
         //http://localhost:5000/api/city/
         //default is HttpGet
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCities()
         {
-            throw new UnauthorizedAccessException();
+           // throw new UnauthorizedAccessException();
             //var cities = await dc.Cities.ToListAsync();
             
             // var cities = await uow.CityRepository.GetCitiesAsync();

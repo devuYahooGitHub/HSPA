@@ -9,6 +9,7 @@ namespace WebApi.Data.Repo
 
         //public ICityRepository CityRepository => throw new System.NotImplementedException();
         public ICityRepository CityRepository => new CityRepository(dc);
+        public IUserRepository UserRepository => new UserRepository(dc);
 
         public UnitOfWork(DataContext dc)
         {

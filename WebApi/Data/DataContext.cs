@@ -9,5 +9,6 @@ namespace WebApi.Data
      {        
      }  
      public DbSet<City> Cities { get; set; } 
+     public DbSet<user> Users { get; set; }   
     }
 }
