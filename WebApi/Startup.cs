@@ -72,6 +72,10 @@ namespace WebApi
             //app.ConfigureBuiltInExceptionHandle(env);
 
             app.UseRouting();
+            
+            app.UseHsts();
+            app.UseHttpsRedirection();
+            
             app.UseCors(m=>m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
             app.UseAuthorization();
